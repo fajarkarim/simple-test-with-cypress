@@ -55,11 +55,8 @@
                 return;
             }
 
-            if(email !== 'fajar@gmail.com') {
+            if(email !== 'fajar@gmail.com' || password !== 'fajar') {
                 errorEmailElement.innerText = 'Email is invalid';
-            }
-
-            if(password !== 'fajar') {
                 errorPasswordElement.innerText = 'Password is invalid';
                 return;
             }

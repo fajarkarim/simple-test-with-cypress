@@ -41,6 +41,19 @@ context('Login Test', () => {
         cy.get('#errorPassword').should('contain', 'Password cannot be empty');
     });
 
+    it('should contains email is invalid or password is invalid, when given wrong email or password', () => {
+        cy.get('input#inputEmail')
+            .type('xaview@gmail.com');
+        cy.get('input#inputPassword')
+            .type('fajar');
+
+        cy.get('button#loginButton')
+            .click();
+
+        cy.get('#errorEmail').should('contain', 'Email is invalid');
+        cy.get('#errorPassword').should('contain', 'Password is invalid');
+    });
+
     it('should go to /dashboard when login was successful', () => {
         cy.get('input#inputEmail')
             .type('fajar@gmail.com');

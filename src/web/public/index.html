@@ -3,23 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <title>Cypress</title>
+    <link rel="stylesheet" href="./css/style.css">
 </head>
 <body>
     <div id="container">
         <div class="box__login">
             <h1>Login</h1>
-            <div>
-                <label for="inputEmail">email</label>
-                <input id="inputEmail" type="text"/>
+            <hr>
+            <div class="input__wrapper">
+                <label for="inputEmail">Email</label>
+                <input id="inputEmail" type="text" onkeydown="handleOnEnter(event)"/>
+                <div class="error" id="errorEmail"></div>
             </div>
-            <div id="errorEmail"></div>
 
-            <div>
-                <label for="inputPassword">password</label>
-                <input id="inputPassword" type="password"/>
+            <div class="input__wrapper">
+                <label for="inputPassword">Password</label>
+                <input id="inputPassword" type="password" onkeydown="handleOnEnter(event)"/>
+                <div id="errorPassword" class="error"></div>
             </div>
-            <div id="errorPassword"></div>
-            <button id="loginButton" onclick="handleLoginButtonOnClick()">Submit</button>
+            <button id="loginButton" onclick="handleLoginButtonOnClick()" >Submit</button>
         </div>
     </div>
     <script>
@@ -27,19 +29,47 @@
             let emailValue = document.getElementById('inputEmail').value;
             let passwordValue = document.getElementById('inputPassword').value;
             handleErrorEmailAndPassword(emailValue, passwordValue);
+        }
 
+        function handleOnEnter(event) {
+            if (event.key === "Enter") {
+                event.preventDefault();
+                handleLoginButtonOnClick();
+            }
         }
 
         function handleErrorEmailAndPassword(email, password) {
             let errorEmailElement = document.getElementById('errorEmail');
             let errorPasswordElement = document.getElementById('errorPassword');
+            if (!email || email === '') {
+                errorEmailElement.innerText = 'Email cannot be empty';
+            }
+
+            if (!password || password === '') {
+                errorPasswordElement.innerText = 'Password cannot be empty';
+                return;
+            }
+
+            if (!validateEmail(email)) {
+                errorEmailElement.innerText = 'Invalid Email Format';
+                return;
+            }
+
             if(email !== 'fajar@gmail.com') {
                 errorEmailElement.innerText = 'Email is invalid';
             }
 
             if(password !== 'fajar') {
                 errorPasswordElement.innerText = 'Password is invalid';
+                return;
             }
+
+            window.location = '/dashboard';
+        }
+
+        function validateEmail(email) {
+            var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+            return re.test(String(email).toLowerCase());
         }
 
     </script>

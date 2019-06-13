@@ -8,12 +8,40 @@
     <div id="container">
         <div class="box__login">
             <h1>Login</h1>
-            <label for="inputEmail">email</label>
-            <input id="inputEmail" type="text"/>
-            <label for="inputPassword">password</label>
-            <input id="inputPassword" type="password"/>
+            <div>
+                <label for="inputEmail">email</label>
+                <input id="inputEmail" type="text"/>
+            </div>
+            <div id="errorEmail"></div>
+
+            <div>
+                <label for="inputPassword">password</label>
+                <input id="inputPassword" type="password"/>
+            </div>
+            <div id="errorPassword"></div>
+            <button id="loginButton" onclick="handleLoginButtonOnClick()">Submit</button>
         </div>
     </div>
+    <script>
+        function handleLoginButtonOnClick() {
+            let emailValue = document.getElementById('inputEmail').value;
+            let passwordValue = document.getElementById('inputPassword').value;
+            handleErrorEmailAndPassword(emailValue, passwordValue);
 
+        }
+
+        function handleErrorEmailAndPassword(email, password) {
+            let errorEmailElement = document.getElementById('errorEmail');
+            let errorPasswordElement = document.getElementById('errorPassword');
+            if(email !== 'fajar@gmail.com') {
+                errorEmailElement.innerText = 'Email is invalid';
+            }
+
+            if(password !== 'fajar') {
+                errorPasswordElement.innerText = 'Password is invalid';
+            }
+        }
+
+    </script>
 </body>
 </html>

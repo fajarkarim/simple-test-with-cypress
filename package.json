@@ -1,0 +1,30 @@
+{
+  "name": "simple-test-with-cypress",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node ./src/web/app.js",
+    "cypress:open": "cypress open"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fajarkarim/simple-test-with-cypress.git"
+  },
+  "keywords": [
+    "cypress"
+  ],
+  "author": "fajar abdul karim",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/fajarkarim/simple-test-with-cypress/issues"
+  },
+  "homepage": "https://github.com/fajarkarim/simple-test-with-cypress#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "cypress": "^3.3.1"
+  }
+}
